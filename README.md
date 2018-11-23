@@ -7,14 +7,15 @@ My goal with this project is to create a small animation 2D engine, which I coul
 
 This project is experimental, under construction, but it works and you can test the different examples contained by the "sketches" directory.
 
-I'm not a specialist of the 2D animation, so I get inspiration in several excellent books :
+I'm not a specialist of the 2D animation, so I get inspiration in some excellent books :
 
 - Programming Macromedia Flash MX, by Robert Penner's, ed Mc Graw Hill (2002)
 - Foundation ActionScript 3.0 Animation, by Keith Peters, ed FriendsofED / Apress (2007)
 - Foundation HTML5 Animation with Javascript, Billy Lamberta, ed FriendsofED / Apress (2011)
-- The Nature of Code, by Daniel Shiffman (https://natureofcode.com/)
-- Comment créer un moteur d'animation 2D, de Nicolas Legrand (link below)
+- The Nature of Code, by Daniel Shiffman https://natureofcode.com/
+- Comment créer un moteur d'animation 2D, de Nicolas Legrand
    https://javascript.developpez.com/tutoriels/html5/creer-moteur-affichage-2d-html5/
+- Flash Math Creativity, 2nd edition", ed FriendsofED / Apress (2004)
 
 
 Why the name AutomatosJs ?
@@ -31,7 +32,3 @@ Because I discovered this definition in a small book of the Monaco National Muse
 By reading this, I thought it was exactly I was trying to create in Javascript, an "automatos" engine.
 
 The project is not documented for the moment, I hope you'll excuse me for that, and that you'll like to play with this modest Javascript engine.
-
-
-
-

@@ -71,3 +71,16 @@ class canvasRect extends Sprite {
 
 };
 
+class canvasCircle extends Sprite {
+
+  draw (context){
+    context.save();
+    //context.fillStyle = this.color;
+    context.fillStyle='#'+Math.floor(Math.random()*16777215).toString(16);
+    context.arc(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height, Math.PI*2);
+
+context.fill();
+    context.restore();
+  }
+
+};

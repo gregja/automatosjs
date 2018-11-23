@@ -1,6 +1,3 @@
-// inspired by an Actionscript code of Glenn Rhodes
-// published in the book "Flash Math Creativity, 2nd edition" (FriendsofED 2004)
-
 // améliore les perfs :
 //  https://github.com/processing/p5.js/wiki/Optimizing-p5.js-Code-for-Performance#use-native-js-in-bottlenecks
 //p5.disableFriendlyErrors = true;
@@ -61,7 +58,7 @@ function setup() {
   item = {};
   item.name = 'obj1';
   item.trf = {};
-  item.trf.xtrans = 200; 
+  item.trf.xtrans = 200;
   item.trf.ytrans = 100;
   item.oef = {};
   item.oef.xpivot = 2;
@@ -71,7 +68,7 @@ function setup() {
   item.vectors.push({x:0, y:0});
   item.vectors.push({x:20, y:80});
 
-  var obj1 = new p5Rect(item); 
+  var obj1 = new p5Rect(item);
   obj1.addEventListener(EventContainer.ADDED, null, onAdded);
   obj1.addEventListener(EventContainer.P5CLICKED, null, onMyClick);
 
@@ -80,8 +77,8 @@ function setup() {
   item = {};
   item.name = 'obj2a';
   item.trf = {};
-  item.trf.xtrans = 400; 
-  item.trf.ytrans = 100; 
+  item.trf.xtrans = 400;
+  item.trf.ytrans = 100;
   item.oef = {};
   // item.oef.xskew = 15;
   //item.oef.yskew = 2;
@@ -90,7 +87,7 @@ function setup() {
   item.vectors.push({x:0, y:0});
   item.vectors.push({x:20, y:100});
 
-  var obj2a = new p5Rect(item); 
+  var obj2a = new p5Rect(item);
   obj2a.addEventListener(EventContainer.ADDED, null, onAdded);
   //obj2a.addEventListener(EventContainer.P5CLICKED, null, onMyClick);
 
@@ -149,7 +146,7 @@ function setup() {
   item.vectors.push({x:30, y:50});
 
   var obj4 = new ballradiant(item);
-  obj4.addEventListener(EventContainer.ADDED, null, onAdded);  
+  obj4.addEventListener(EventContainer.ADDED, null, onAdded);
   obj4.addEventListener(EventContainer.REMOVED, null, onAdded);
   obj4.addEventListener(EventContainer.P5CLICKED, null, onMyClick);
 
@@ -157,8 +154,8 @@ function setup() {
   item = {};
   item.name = 'obj5';
   item.trf = {};
-  item.trf.xtrans = 200; 
-  item.trf.ytrans = 400; 
+  item.trf.xtrans = 200;
+  item.trf.ytrans = 400;
   item.oef = {};
   //  item.oef.xpivot = 3;
   //  item.oef.ypivot = 5;
@@ -173,22 +170,22 @@ function setup() {
   obj5.addEventListener(EventContainer.ADDED, null, onAdded);
 
 
-  displayList1.addChild(obj1); 
+  displayList1.addChild(obj1);
   displayList1.addChild(obj2a);
   displayList1.addChild(obj2b);
   displayList1.addChild(obj3);
   displayList1.addChild(obj4);
-  displayList1.addChild(obj5); 
+  displayList1.addChild(obj5);
 
   Stage.addChild(displayList1);
-  
-  
+
+
   // List 2 Objet 1
   item = {};
   item.name = 'l1objl1';
   item.trf = {};
-  item.trf.xtrans = 100; 
-  item.trf.ytrans = 100; 
+  item.trf.xtrans = 100;
+  item.trf.ytrans = 100;
   item.oef = {};
     item.oef.xpivot = 3;
     item.oef.ypivot = 5;
@@ -203,9 +200,9 @@ function setup() {
   l1objl1.addEventListener(EventContainer.ADDED, null, onAdded);
   //obj5.addEventListener(EventContainer.P5CLICKED, null, onMyClick);
 
-  displayList2.addChild(l1objl1); 
+  displayList2.addChild(l1objl1);
 
-  
+
   Stage.addChild(displayList2);
 
 

@@ -7,6 +7,7 @@ class Sprite extends EventDispatcher {
   }
 
   init(args={}){
+    //var args = this.secureParams(xargs);
     this.type = 'displayObject';
     this.name = args.name || args.NAME || '*nope';
     this.parent = args.parent || args.PARENT || null;
@@ -15,7 +16,7 @@ class Sprite extends EventDispatcher {
     this.mouseEnabled = true;
 
     this.vectors = args.vectors || args.VECTORS || [];
-    this.children = args.children || args.CHILDREN || null;  
+    this.children = args.children || args.CHILDREN || null;
 
     // effets de transformation initiaux (effectués une seule fois)
     this.trf = args.trf || args.TRF || {};  // paramètres de transformation (translate, scale, rotation, skew, pivot)
@@ -23,7 +24,7 @@ class Sprite extends EventDispatcher {
 
     // effets de transformation permanents ("oef" = "on each frame")
     this.oef = args.oef || args.OEF || {};  // paramètres de transformation
-    
+
     this.coords = this.getSurfaceFromVectors(this.vectors);
 
     this.alpha = args.alpha || args.ALPHA || 1;  // TODO : non géré (à traiter)
@@ -35,7 +36,7 @@ class Sprite extends EventDispatcher {
     // définition de la vélocité
     this.velocity = args.velocity || args.VELOCITY || this.getXYDefaults();
 
-    this.visible = args.visible || args.VISIBLE || true;    
+    this.visible = args.visible || args.VISIBLE || true;
 
     this._matrix = new Matrix2D();
     this._concatenedMatrix = null;
@@ -43,12 +44,16 @@ class Sprite extends EventDispatcher {
 
   }
 
+  secureParams(param) {
+      return JSON.parse(JSON.stringify(param));
+  }
+
   getXYDefaults(defX=0, defY=0) {
-    return {x:defX, y:defY};  
+    return {x:defX, y:defY};
   }
 
   /**
-  * Normalisation des paramètres de transformation 
+  * Normalisation des paramètres de transformation
   */
   checkTRF () {
     let checks = ['trans', 'scale', 'skew', 'pivot'];
@@ -81,7 +86,7 @@ class Sprite extends EventDispatcher {
     let xmax = null;
     let ymax = null;
 
-    // déterminer les arêtes les plus à gauche et à droite 
+    // déterminer les arêtes les plus à gauche et à droite
     // permet de calculer dynamiquement largeur et hauteur
     vectors.forEach((item)=>{
       let current = item.x + item.y;
@@ -89,7 +94,7 @@ class Sprite extends EventDispatcher {
         min = current;
         xmin = item.x;
         ymin = item.y;
-      } 
+      }
       if (current > max) {
         max = current;
         xmax = item.x;
@@ -132,11 +137,11 @@ class Sprite extends EventDispatcher {
   }
 
   render ( context, flagUpdate=true ){
-   
+
     if( this.visible == false ) {
       return;
     }
-    
+
     // application sur this.trf des transformations permanentes
     let oef = this.oef;
     let trf = this.trf;
@@ -146,7 +151,7 @@ class Sprite extends EventDispatcher {
         trf[key] = oef[key];
       })
     }
-    
+
     if (flagUpdate) {
       this.update();
     }
@@ -162,21 +167,21 @@ class Sprite extends EventDispatcher {
     this.draw(context);
 
     if (this.children != null) {
-      this.children.draw(context);  
+      this.children.draw(context);
     }
 
     context.restore();
 
     // transformations appliquées une seule fois
     trf.xtrans = 0;
-    trf.ytrans = 0;  
+    trf.ytrans = 0;
     trf.xscale = 1;
     trf.yscale = 1;
     trf.rotation = 0;
     trf.xskew = 0;
     trf.yskew = 0;
     trf.xpivot = 0;
-    trf.ypivot = 0; 
+    trf.ypivot = 0;
   };
 
   //Méthode update, qui nous permet d'actualiser la propriété this._matrix de la classe DisplayObject;
@@ -247,13 +252,13 @@ class Sprite extends EventDispatcher {
     var localCoords = this.globalToLocal(x,y);
     var coords = this.coords;
 
-    if( localCoords.x < coords.xmin || localCoords.x > coords.xmax 
+    if( localCoords.x < coords.xmin || localCoords.x > coords.xmax
        || localCoords.y < coords.ymin || localCoords.y > coords.ymax ) {
       return false;
     } else {
       return true;
     }
-  } 
+  }
 
   /*  hitTestShape (sprite){
     var localCoords1 = this.globalToLocal(x,y);
@@ -263,5 +268,5 @@ class Sprite extends EventDispatcher {
     } else {
       return true;
     }
-  } */ 
+  } */
 }
