@@ -8,7 +8,7 @@ class StageContainer extends DisplayList {
   init(args) {
     this.stageWidth = args.stageWidth || 100;
     this.stageHeight = args.stageHeight || 100;
-    this.backgroundColor = args.backgroundColor || "white"; 
+    this.backgroundColor = args.backgroundColor || "white";
     this.mouseX = args.x || this.stageWidth / 2;
     this.mouseY = args.y || this.stageHeight / 2;
     this.fps = args.fps || 60;
@@ -89,26 +89,5 @@ class StageContainer extends DisplayList {
     }
     this._lastActiveChild = activeChild;
   }
-
-  _getMouseObjectUnder (x,y,container) {
-    var under = null;
-    var children = container.children;
-    var i = children.length;
-    var child = null;
-    while( --i > -1 ) {
-      let child = children[i];
-      if( child.children ) {
-        under = this._getMouseObjectUnder(x,y,child);
-        if( under != null )
-          return under;
-      } else {
-        if( child.type == "displayObject" && child.mouseEnabled == true &&  child.hitTestPoint(x,y) == true )  {
-          return child;
-        }
-      }
-    }
-    return null;
-  }
-
 
 }

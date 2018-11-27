@@ -7,7 +7,7 @@ class Sprite extends EventDispatcher {
   }
 
   init(args={}){
-    //var args = this.secureParams(xargs);
+
     this.type = 'displayObject';
     this.name = args.name || args.NAME || '*nope';
     this.parent = args.parent || args.PARENT || null;
@@ -38,14 +38,15 @@ class Sprite extends EventDispatcher {
 
     this.visible = args.visible || args.VISIBLE || true;
 
+    this.selected = false; //
+    this.touched = false;  // for detecting dragging mode
+    this.hovered = false;  // TODO : not implemented for the moment
+    this.zoom = 1; // valeur de départ du zoom si actif (par exemple pour un zoom associé à la molette de la souris)
+
     this._matrix = new Matrix2D();
     this._concatenedMatrix = null;
     this.update();
 
-  }
-
-  secureParams(param) {
-      return JSON.parse(JSON.stringify(param));
   }
 
   getXYDefaults(defX=0, defY=0) {
@@ -110,6 +111,7 @@ class Sprite extends EventDispatcher {
     coords.ycenter = Math.floor(coords.height / 2);
     coords.xradius = Math.floor(coords.width - coords.xcenter);
     coords.yradius = Math.floor(coords.height - coords.ycenter);
+
     return coords;
   }
 
@@ -246,6 +248,12 @@ class Sprite extends EventDispatcher {
     var matrix = this.getConcatenedMatrix().clone().invert();
     var pt = matrix.transformPoint(x,y);
     return this.getPoint(pt.x,pt.y);
+  }
+
+  setTranslation(x, y) {
+    var localCoords = this.globalToLocal(x,y);
+    this.trf.xtrans = localCoords.x;
+    this.trf.ytrans = localCoords.y;
   }
 
   hitTestPoint (x,y){

@@ -15,7 +15,7 @@ I'm not a specialist of the 2D animation, so I get inspiration in some excellent
 - The Nature of Code, by Daniel Shiffman https://natureofcode.com/
 - Comment créer un moteur d'animation 2D, de Nicolas Legrand
    https://javascript.developpez.com/tutoriels/html5/creer-moteur-affichage-2d-html5/
-- Flash Math Creativity, 2nd edition", ed FriendsofED / Apress (2004)
+- Flash Math Creativity, 2nd edition, ed FriendsofED / Apress (2004)
 
 
 Why the name AutomatosJs ?

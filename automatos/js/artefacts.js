@@ -8,7 +8,34 @@ class ballradiant extends Sprite {
     context.fillStyle = grd;
 
     context.beginPath();
+    if (this.coords.xradius == this.coords.yradius) {
     context.arc(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height, TWO_PI, true);
+    } else {
+      context.ellipse(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height, TWO_PI, 0, TWO_PI);
+    }
+    context.closePath();
+    context.fill();
+    context.restore();
+  }
+
+};
+
+
+class eye extends Sprite {
+
+  draw (context){
+    context.save();
+    var grd = context.createRadialGradient(0, 0, 0, 0, 0, this.coords.height);
+    grd.addColorStop(0,"blue");
+    grd.addColorStop(1,"white");
+    context.fillStyle = grd;
+
+    context.beginPath();
+    if (this.coords.xradius == this.coords.yradius) {
+      context.arc(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height, TWO_PI, true);
+    } else {
+      context.ellipse(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height, TWO_PI, 0, TWO_PI);
+    }
     context.closePath();
     context.fill();
     context.restore();
@@ -20,8 +47,21 @@ class ballradiant extends Sprite {
 class simpleBall extends Sprite {
 
   draw (context) {
+    if (this.hovered) {
+      context.fillStyle = "grey";
+      context.fill();
+    } else {
+      if (this.color) {
+        context.fillStyle = this.color;
+        context.fill();
+      }
+    }
+
     context.beginPath();
     context.arc(this.coords.xcenter, this.coords.ycenter, this.coords.width,0,2*Math.PI);
+    if (this.touched) {
+      context.strokeStyle="red";
+    }
     context.stroke();
   }
 
@@ -64,22 +104,20 @@ class canvasRect extends Sprite {
 
   draw (context){
     context.save();
+
     context.fillStyle = this.color;
     context.fillRect(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height);
-    context.restore();
-  }
 
-};
+    if (this.touched) {
+      context.strokeStyle = "red";
+      context.strokeRect(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height);
+    } else {
+      if (this.selected) {
+        context.strokeStyle = "blue";
+        context.strokeRect(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height);
+      }
+    }
 
-class canvasCircle extends Sprite {
-
-  draw (context){
-    context.save();
-    //context.fillStyle = this.color;
-    context.fillStyle='#'+Math.floor(Math.random()*16777215).toString(16);
-    context.arc(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height, Math.PI*2);
-
-context.fill();
     context.restore();
   }
 

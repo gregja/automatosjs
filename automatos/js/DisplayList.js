@@ -5,13 +5,13 @@ class DisplayList extends EventDispatcher {
     this.type = 'displayList';
     this.name = args.name || args.NAME || '*nope';
     this.parent = args.parent || args.PARENT || null;
-    this.children = new Array();  
+    this.children = new Array();
   }
 
   clearList() {
-    this.children = new Array();    
+    this.children = new Array();
   }
-  
+
   addChild (child){
     if( child.parent ){
       child.parent.removeChild(child);
@@ -85,7 +85,7 @@ class DisplayList extends EventDispatcher {
   getLength() {
     return this.children.length;
   }
-  
+
   draw ( context ){
     var children = this.children;
     var child = null;
@@ -99,23 +99,25 @@ class DisplayList extends EventDispatcher {
       }
     }
   }
+
   _getMouseObjectUnder (x,y,container) {
     var under = null;
     var children = container.children;
     var i = children.length;
     var child = null;
     while( --i > -1 ) {
-      child = children[i];
+      let child = children[i];
       if( child.children ) {
         under = this._getMouseObjectUnder(x,y,child);
         if( under != null )
           return under;
       } else {
-        if( child.mouseEnabled == true && child.hitTestPoint(x,y) == true )  {
+        if( child.type == "displayObject" && child.mouseEnabled == true &&  child.hitTestPoint(x,y) == true )  {
           return child;
         }
       }
     }
     return null;
   }
+
 }
