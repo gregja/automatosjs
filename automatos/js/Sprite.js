@@ -80,28 +80,29 @@ class Sprite extends EventDispatcher {
   * Normalisation des coordonnées de l'objet à partir des vecteurs reçus
   */
   getSurfaceFromVectors(vectors) {
-    let min = 999999;
-    let max = -1;
-    let xmin = null;
-    let ymin = null;
-    let xmax = null;
-    let ymax = null;
-
     // déterminer les arêtes les plus à gauche et à droite
     // permet de calculer dynamiquement largeur et hauteur
-    vectors.forEach((item)=>{
-      let current = item.x + item.y;
-      if (current < min) {
-        min = current;
-        xmin = item.x;
-        ymin = item.y;
+    var i = vectors.length-1;
+    var nbmax = 0;
+    var xmin = vectors[0].x;
+    var ymin = vectors[0].y;
+    var xmax = vectors[i].x;
+    var ymax = vectors[i].y;
+
+    for (i = i-1;i >= 0;i--) {
+      if (ymax < vectors[i].y) {
+        ymax = vectors[i].y;
       }
-      if (current > max) {
-        max = current;
-        xmax = item.x;
-        ymax = item.y;
+      if (xmax < vectors[i].x) {
+        xmax = vectors[i].x;
       }
-    });
+      if (ymin > vectors[i].y) {
+        ymin = vectors[i].y;
+      }
+      if (xmin > vectors[i].x) {
+        xmin = vectors[i].x;
+      }
+    }
 
     // détermination du périmètre maximal à partir des vecteurs transmis
     let coords = {xmin:xmin, ymin:ymin, xmax:xmax, ymax:ymax};
