@@ -21,71 +21,79 @@ var MathFX = (function () {
   const QUARTER_PI = PI / 4;
   const DEG_TO_RAD = PI / 180;
 
-  const swing = (x, t, b, c, d) => easeOutQuad(x, t, b, c, d),
+  /**
+   * t = time
+   * b = beginning position
+   * c = total change in position
+   * d = duration of the tween
+   */
+  const swing = (t, b, c, d) => easeOutQuad(t, b, c, d),
 
-        easeInQuad = (x, t, b, c, d) => c*(t/=d)*t + b,
+        linearTween = (t, b, c, d) => c*t/d+b,
 
-        easeOutQuad = (x, t, b, c, d) => -c *(t/=d)*(t-2) + b,
+        easeInQuad = (t, b, c, d) => c*(t/=d)*t + b,
 
-        easeInOutQuad = (x, t, b, c, d) => {
+        easeOutQuad = (t, b, c, d) => -c *(t/=d)*(t-2) + b,
+
+        easeInOutQuad = (t, b, c, d) => {
           if ((t/=d/2) < 1) return c/2*t*t + b;
           return -c/2 * ((--t)*(t-2) - 1) + b;
         },
 
-        easeInCubic = (x, t, b, c, d) => c*(t/=d)*t*t + b,
+        easeInCubic = (t, b, c, d) => c*(t/=d)*t*t + b,
 
-        easeOutCubic = (x, t, b, c, d) => c*((t=t/d-1)*t*t + 1) + b,
+        easeOutCubic = (t, b, c, d) => c*((t=t/d-1)*t*t + 1) + b,
 
-        easeInOutCubic = (x, t, b, c, d) => {
+        easeInOutCubic = (t, b, c, d) => {
           if ((t/=d/2) < 1) return c/2*t*t*t + b;
           return c/2*((t-=2)*t*t + 2) + b;
         },
 
-        easeInQuart = (x, t, b, c, d) => c*(t/=d)*t*t*t + b,
+        easeInQuart = (t, b, c, d) => c*(t/=d)*t*t*t + b,
 
-        easeOutQuart = (x, t, b, c, d) => -c * ((t=t/d-1)*t*t*t - 1) + b,
+        easeOutQuart = (t, b, c, d) => -c * ((t=t/d-1)*t*t*t - 1) + b,
 
-        easeInOutQuart = (x, t, b, c, d) => {
+        easeInOutQuart = (t, b, c, d) => {
           if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
           return -c/2 * ((t-=2)*t*t*t - 2) + b;
         },
 
-        easeInQuint = (x, t, b, c, d) => c*(t/=d)*t*t*t*t + b,
+        easeInQuint = (t, b, c, d) => c*(t/=d)*t*t*t*t + b,
 
-        easeOutQuint = (x, t, b, c, d) => c*((t=t/d-1)*t*t*t*t + 1) + b,
+        easeOutQuint = (t, b, c, d) => c*((t=t/d-1)*t*t*t*t + 1) + b,
 
-        easeInOutQuint = (x, t, b, c, d) => {
+        easeInOutQuint = (t, b, c, d) => {
           if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
           return c/2*((t-=2)*t*t*t*t + 2) + b;
         },
 
-        easeInSine = (x, t, b, c, d) => -c * cos(t/d * HALF_PI) + c + b,
+        easeInSine = (t, b, c, d) => -c * cos(t/d * HALF_PI) + c + b,
 
-        easeOutSine = (x, t, b, c, d) => c * sin(t/d * HALF_PI) + b,
+        easeOutSine = (t, b, c, d) => c * sin(t/d * HALF_PI) + b,
 
-        easeInOutSine = (x, t, b, c, d) => -c/2 * (cos(PI*t/d) - 1) + b,
+        easeInOutSine = (t, b, c, d) => -c/2 * (cos(PI*t/d) - 1) + b,
 
-        easeInExpo = (x, t, b, c, d) => (t==0) ? b : c * pow(2, 10 * (t/d - 1)) + b,
+        easeInExpo = (t, b, c, d) => (t==0) ? b : c * pow(2, 10 * (t/d - 1)) + b,
 
-        easeOutExpo = (x, t, b, c, d) => (t==d) ? b+c : c * (-pow(2, -10 * t/d) + 1) + b,
+        easeOutExpo = (t, b, c, d) => (t==d) ? b+c : c * (-pow(2, -10 * t/d) + 1) + b,
 
-        easeInOutExpo = (x, t, b, c, d) => {
+        easeInOutExpo = (t, b, c, d) => {
           if (t==0) return b;
           if (t==d) return b+c;
           if ((t/=d/2) < 1) return c/2 * pow(2, 10 * (t - 1)) + b;
           return c/2 * (-pow(2, -10 * --t) + 2) + b;
         },
 
-        easeInCirc = (x, t, b, c, d) => -c * (sqrt(1 - (t/=d)*t) - 1) + b,
+        easeInCirc = (t, b, c, d) => -c * (sqrt(1 - (t/=d)*t) - 1) + b,
 
-        easeOutCirc = (x, t, b, c, d) => c * sqrt(1 - (t=t/d-1)*t) + b,
+        easeOutCirc = (t, b, c, d) => c * sqrt(1 - (t=t/d-1)*t) + b,
 
-        easeInOutCirc = (x, t, b, c, d) => {
+        easeInOutCirc = (t, b, c, d) => {
           if ((t/=d/2) < 1) return -c/2 * (sqrt(1 - t*t) - 1) + b;
           return c/2 * (sqrt(1 - (t-=2)*t) + 1) + b;
         },
 
-        easeInElastic = (x, t, b, c, d) => {
+        easeInElastic = (t, b, c, d) => {
           var s=S_DEFAULT;var p=0;var a=c;
           if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
           if (a < abs(c)) { a=c; var s=p/4; }
@@ -93,7 +101,7 @@ var MathFX = (function () {
           return -(a*pow(2,10*(t-=1)) * sin( (t*d-s)*TWO_PI/p )) + b;
         },
 
-        easeOutElastic = (x, t, b, c, d) => {
+        easeOutElastic = (t, b, c, d) => {
           var s=S_DEFAULT;var p=0;var a=c;
           if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
           if (a < abs(c)) { a=c; var s=p/4; }
@@ -101,7 +109,7 @@ var MathFX = (function () {
           return a*pow(2,-10*t) * sin( (t*d-s)*TWO_PI/p ) + c + b;
         },
 
-        easeInOutElastic = (x, t, b, c, d) => {
+        easeInOutElastic = (t, b, c, d) => {
           var s=S_DEFAULT;var p=0;var a=c;
           if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
           if (a < abs(c)) { a=c; var s=p/4; }
@@ -110,25 +118,25 @@ var MathFX = (function () {
           return a*pow(2,-10*(t-=1)) * sin( (t*d-s)*TWO_PI/p )*.5 + c + b;
         },
 
-        easeInBack = (x, t, b, c, d, s) => {
+        easeInBack = (t, b, c, d, s) => {
           if (s == undefined) s = S_DEFAULT;
           return c*(t/=d)*t*((s+1)*t - s) + b;
         },
 
-        easeOutBack = (x, t, b, c, d, s) => {
+        easeOutBack = (t, b, c, d, s) => {
           if (s == undefined) s = S_DEFAULT;
           return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
         },
 
-        easeInOutBack = (x, t, b, c, d, s) => {
+        easeInOutBack = (t, b, c, d, s) => {
           if (s == undefined) s = S_DEFAULT;
           if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
           return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
         },
 
-        easeInBounce = (x, t, b, c, d) => c - easeOutBounce (x, d-t, 0, c, d) + b,
+        easeInBounce = (t, b, c, d) => c - easeOutBounce (d-t, 0, c, d) + b,
 
-        easeOutBounce = (x, t, b, c, d) => {
+        easeOutBounce = (t, b, c, d) => {
           if ((t/=d) < (1/2.75)) {
             return c*(7.5625*t*t) + b;
           } else if (t < (2/2.75)) {
@@ -140,9 +148,9 @@ var MathFX = (function () {
           }
         },
 
-        easeInOutBounce = (x, t, b, c, d) => {
-          if (t < d/2) return easeInBounce (x, t*2, 0, c, d) * .5 + b;
-          return easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
+        easeInOutBounce = (t, b, c, d) => {
+          if (t < d/2) return easeInBounce (t*2, 0, c, d) * .5 + b;
+          return easeOutBounce (t*2-d, 0, c, d) * .5 + c*.5 + b;
         },
 
         /**
@@ -169,6 +177,7 @@ var MathFX = (function () {
     HALF_PI: HALF_PI,
     QUARTER_PI: QUARTER_PI,
     swing: swing,
+    linearTween: linearTween,
     easeInQuad: easeInQuad,
     easeOutQuad: easeOutQuad,
     easeInOutQuad: easeInOutQuad,

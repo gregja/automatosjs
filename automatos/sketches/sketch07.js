@@ -57,9 +57,6 @@ var context2d = null;
 
 var displayList1 = new DisplayList({name:'list1'});
 
-//var displayList2 = new DisplayList({name:'list2'});
-var objs = [];
-
 function setup() {
   createCanvas(Stage.stageWidth, Stage.stageHeight);
   frameRate(Stage.fps);
@@ -94,7 +91,7 @@ function setup() {
   item2.trf.xtrans = 200;
   item2.trf.ytrans = 150;
   item2.oef = {};
-   item1.oef.rotation = .5;
+  item2.oef.rotation = .5;
   item2.color = 'rgba(10, 50, 20, .8)';
   item2.vectors = [];
   item2.vectors.push({x:0, y:0});

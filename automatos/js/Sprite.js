@@ -17,6 +17,7 @@ class Sprite extends EventDispatcher {
 
     this.vectors = args.vectors || args.VECTORS || [];
     this.children = args.children || args.CHILDREN || null;
+    this.dataset = args.dataset || args.DATASET || {};
 
     // effets de transformation initiaux (effectués une seule fois)
     this.trf = args.trf || args.TRF || {};  // paramètres de transformation (translate, scale, rotation, skew, pivot)
@@ -80,6 +81,7 @@ class Sprite extends EventDispatcher {
   * Normalisation des coordonnées de l'objet à partir des vecteurs reçus
   */
   getSurfaceFromVectors(vectors) {
+
     // déterminer les arêtes les plus à gauche et à droite
     // permet de calculer dynamiquement largeur et hauteur
     var i = vectors.length-1;
@@ -124,6 +126,7 @@ class Sprite extends EventDispatcher {
     item.trf = this.trf;
     item.oef = this.oef;
     item.coords = this.coords;
+    item.dataset = this.dataset;
 
     // TODO : à compléter
     //  item.parent = this.parent;
@@ -146,13 +149,18 @@ class Sprite extends EventDispatcher {
     }
 
     // application sur this.trf des transformations permanentes
-    let oef = this.oef;
-    let trf = this.trf;
-    let oef_keys = Object.keys(oef);
+    var oef = this.oef;
+    var trf = this.trf;
+    var oef_keys = Object.keys(oef);
+    //var self = this;
     if (oef_keys) {
       oef_keys.forEach(key => {
-        trf[key] = oef[key];
+          trf[key] = oef[key];
       })
+    }
+
+    if (this.onEachFrame) {
+      this.onEachFrame();
     }
 
     if (flagUpdate) {
