@@ -7,7 +7,7 @@ class Sprite extends EventDispatcher {
   }
 
   init(args={}){
-
+    
     this.type = 'displayObject';
     this.name = args.name || args.NAME || '*nope';
     this.parent = args.parent || args.PARENT || null;
@@ -16,7 +16,7 @@ class Sprite extends EventDispatcher {
     this.mouseEnabled = true;
 
     this.vectors = args.vectors || args.VECTORS || [];
-    this.children = args.children || args.CHILDREN || null;
+    this.children = args.children || args.CHILDREN || null;  
     this.dataset = args.dataset || args.DATASET || {};
 
     // effets de transformation initiaux (effectués une seule fois)
@@ -37,9 +37,9 @@ class Sprite extends EventDispatcher {
     // définition de la vélocité
     this.velocity = args.velocity || args.VELOCITY || this.getXYDefaults();
 
-    this.visible = args.visible || args.VISIBLE || true;
+    this.visible = args.visible || args.VISIBLE || true;    
 
-    this.selected = false; //
+    this.selected = false; // 
     this.touched = false;  // for detecting dragging mode
     this.hovered = false;  // TODO : not implemented for the moment
     this.zoom = 1; // valeur de départ du zoom si actif (par exemple pour un zoom associé à la molette de la souris)
@@ -51,11 +51,11 @@ class Sprite extends EventDispatcher {
   }
 
   getXYDefaults(defX=0, defY=0) {
-    return {x:defX, y:defY};
+    return {x:defX, y:defY};  
   }
 
   /**
-  * Normalisation des paramètres de transformation
+  * Normalisation des paramètres de transformation 
   */
   checkTRF () {
     let checks = ['trans', 'scale', 'skew', 'pivot'];
@@ -76,13 +76,13 @@ class Sprite extends EventDispatcher {
       trf.rotation = 0;
     }
   }
-
+  
   /**
   * Normalisation des coordonnées de l'objet à partir des vecteurs reçus
   */
   getSurfaceFromVectors(vectors) {
 
-    // déterminer les arêtes les plus à gauche et à droite
+    // déterminer les arêtes les plus à gauche et à droite 
     // permet de calculer dynamiquement largeur et hauteur
     var i = vectors.length-1;
     var nbmax = 0;
@@ -143,11 +143,11 @@ class Sprite extends EventDispatcher {
   }
 
   render ( context, flagUpdate=true ){
-
+   
     if( this.visible == false ) {
       return;
     }
-
+    
     // application sur this.trf des transformations permanentes
     var oef = this.oef;
     var trf = this.trf;
@@ -158,11 +158,11 @@ class Sprite extends EventDispatcher {
           trf[key] = oef[key];
       })
     }
-
+    
     if (this.onEachFrame) {
       this.onEachFrame();
     }
-
+    
     if (flagUpdate) {
       this.update();
     }
@@ -178,21 +178,21 @@ class Sprite extends EventDispatcher {
     this.draw(context);
 
     if (this.children != null) {
-      this.children.draw(context);
+      this.children.draw(context);  
     }
 
     context.restore();
 
     // transformations appliquées une seule fois
     trf.xtrans = 0;
-    trf.ytrans = 0;
+    trf.ytrans = 0;  
     trf.xscale = 1;
     trf.yscale = 1;
     trf.rotation = 0;
     trf.xskew = 0;
     trf.yskew = 0;
     trf.xpivot = 0;
-    trf.ypivot = 0;
+    trf.ypivot = 0; 
   };
 
   //Méthode update, qui nous permet d'actualiser la propriété this._matrix de la classe DisplayObject;
@@ -264,18 +264,18 @@ class Sprite extends EventDispatcher {
     this.trf.xtrans = localCoords.x;
     this.trf.ytrans = localCoords.y;
   }
-
+  
   hitTestPoint (x,y){
     var localCoords = this.globalToLocal(x,y);
     var coords = this.coords;
 
-    if( localCoords.x < coords.xmin || localCoords.x > coords.xmax
+    if( localCoords.x < coords.xmin || localCoords.x > coords.xmax 
        || localCoords.y < coords.ymin || localCoords.y > coords.ymax ) {
       return false;
     } else {
       return true;
     }
-  }
+  } 
 
   /*  hitTestShape (sprite){
     var localCoords1 = this.globalToLocal(x,y);
@@ -285,5 +285,5 @@ class Sprite extends EventDispatcher {
     } else {
       return true;
     }
-  } */
+  } */ 
 }

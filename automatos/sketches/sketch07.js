@@ -115,7 +115,7 @@ function draw() {
     let y = mouseY;
     selected.setTranslation(x, y);
   }
-
+  
   Stage.draw(context2d);
 
   var fps = frameRate();

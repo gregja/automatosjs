@@ -1,6 +1,6 @@
 // améliore les perfs :
 //  https://github.com/processing/p5.js/wiki/Optimizing-p5.js-Code-for-Performance#use-native-js-in-bottlenecks
-//p5.disableFriendlyErrors = true;
+p5.disableFriendlyErrors = true;
 "use strict";
 
 var onMyClick = function (event) {
@@ -54,8 +54,8 @@ function setup() {
       let item = {};
       item.name = 'obj_'+j+'_'+i;
       item.trf = {};
-      item.trf.xtrans = 100+i;
-      item.trf.ytrans = 10+j;
+      item.trf.xtrans = 100+i; 
+      item.trf.ytrans = 10+j; 
       item.oef = {};
     // item.oef.xskew = 15;
     // item.oef.yskew = 20;

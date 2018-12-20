@@ -16,18 +16,18 @@ function setup() {
   frameRate(Stage.fps);
 
   context2d = this.drawingContext;
-
+  
   var center = Stage.stageHeight/2;
   var square_size = 10;
-
+  
   for (let j=0, jmax=center; j<jmax ; j+=square_size) {
     for (let i=0, imax=center; i<imax ; i+=square_size) {
 
       let item = {};
       item.name = 'obj_'+j+'_'+i;
       item.trf = {};
-      item.trf.xtrans = i;
-      item.trf.ytrans = j;
+      item.trf.xtrans = i; 
+      item.trf.ytrans = j; 
       item.oef = {};
     //  item.oef.rotation = 10;
     //  item.oef.xskew = 15;
@@ -37,13 +37,13 @@ function setup() {
       item.vectors.push({x:0-square_size/2, y:0-square_size/2});
       item.vectors.push({x:square_size/2, y:square_size/2});
       item.color = 'black';
-
+      
       item.dataset = {};
-      item.dataset.x = i;
-      item.dataset.y = j;
-
+      item.dataset.x = i; 
+      item.dataset.y = j; 
+      
       let obj = new simpleBall(item); //  new ballradiant(item);
-
+      
       obj.onEachFrame = function() {
         var self = this;
         let fps = frameRate()/10;
@@ -51,13 +51,13 @@ function setup() {
         let ywave = Math.sin(fps * degree) * item.dataset.y;
         self.trf.xtrans = xwave ; //self.dataset.x;
         self.trf.ytrans = ywave ; //self.dataset.y;
-      }
-
+      } 
+     
       displayList1.addChild(obj);
     }
   }
   Stage.addChild(displayList1);
-
+  
 }
 
 function draw() {
@@ -70,10 +70,10 @@ function draw() {
   fill(255);
   stroke(0);
   text("FPS: " + fps.toFixed(2), 10, height - 10);
-
+  
   if (frameCount > 570) {
     console.log('draw function stopped')
-    noLoop();
+    noLoop();  
   }
 }
 

@@ -8,7 +8,7 @@ class StageContainer extends DisplayList {
   init(args) {
     this.stageWidth = args.stageWidth || 100;
     this.stageHeight = args.stageHeight || 100;
-    this.backgroundColor = args.backgroundColor || "white";
+    this.backgroundColor = args.backgroundColor || "white"; 
     this.mouseX = args.x || this.stageWidth / 2;
     this.mouseY = args.y || this.stageHeight / 2;
     this.fps = args.fps || 60;

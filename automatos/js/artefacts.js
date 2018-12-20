@@ -103,11 +103,11 @@ class p5Rect extends Sprite {
 class canvasRect extends Sprite {
 
   draw (context){
-    context.save();
+    context.save();    
 
     context.fillStyle = this.color;
     context.fillRect(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height);
-
+    
     if (this.touched) {
       context.strokeStyle = "red";
       context.strokeRect(this.coords.xmin, this.coords.ymin, this.coords.width, this.coords.height);
@@ -122,3 +122,4 @@ class canvasRect extends Sprite {
   }
 
 };
+

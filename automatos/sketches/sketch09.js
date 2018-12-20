@@ -38,11 +38,11 @@ function setup() {
   item1.dataset.change = item1.dataset.finish - item1.dataset.begin;
   item1.dataset.duration = 60;
   item1.dataset.time = 0;
-
+  
   obj1 = new canvasRect(item1);
 
   obj1.onEachFrame = function() {
-    let calcpos = MathFX.easeInOutQuad(this.dataset.time++, this.dataset.begin,
+    let calcpos = MathFX.easeInOutQuad(this.dataset.time++, this.dataset.begin, 
                                           this.dataset.change, this.dataset.duration);
     this.setTranslation(calcpos, 10);
       console.log(calcpos);
@@ -50,9 +50,9 @@ function setup() {
         console.log('delete');
         delete this.onEachFrame;
       }
-  }
+  } 
 
-
+  
   displayList1.addChild(obj1);
 
   Stage.addChild(displayList1);
@@ -64,7 +64,7 @@ function draw() {
   background(240);
 
 
-/*    let calcpos = MathFX.easeInOutQuad(obj1.dataset.time++, obj1.dataset.begin,
+/*    let calcpos = MathFX.easeInOutQuad(obj1.dataset.time++, obj1.dataset.begin, 
                                           obj1.dataset.change, obj1.dataset.duration);
     obj1.setTranslation(calcpos, 10);
       console.log(calcpos);
@@ -72,18 +72,18 @@ function draw() {
         console.log('delete');
         delete obj1.onEachFrame;
       }*/
-
-
+  
+  
   Stage.draw(context2d);
 
   var fps = frameRate();
   fill(255);
   stroke(0);
   text("FPS: " + fps.toFixed(2), 10, height - 10);
-
+  
   if (frameCount > 570) {
     console.log('draw function stopped')
-    noLoop();
+    noLoop();  
   }
 }
 

@@ -82,8 +82,8 @@ function setup() {
     let item = {};
     item.name = 'obj_'+(idx+1);
     item.trf = {};
-    item.trf.xtrans = rect.x/2;
-    item.trf.ytrans = rect.y/2;
+    item.trf.xtrans = rect.x/2; 
+    item.trf.ytrans = rect.y/2; 
     // item.oef = {};
     // item.oef.rotation = 1;
     item.color = "blue"; // 'rgb(0,0,255)';
@@ -93,19 +93,19 @@ function setup() {
 
     // avec p5Rect, le premier sprite a la bonne couleurs, les autres sont blanc... bug P5 ???
     // avec canvasRect, tous les sprites ont la bonne couleur... ouf !!
-    displayList1.addChild(new canvasRect(item));
+    displayList1.addChild(new canvasRect(item));  
   });
-
+  
   let vert = {};
   vert.name = 'verti';
   vert.color = "rgb(255,0,0)";
   vert.vectors = [];
   vert.vectors.push({x:0, y:0});
   vert.vectors.push({x:1, y:Stage.stageHeight});
-  barre_verticale = new canvasRect(vert);
-
+  barre_verticale = new canvasRect(vert); 
+  
   displayList1.addChild(barre_verticale);
-
+  
   Stage.addChild(displayList1);
 
   // création d'une zone de communication à l'intérieur du DOM
@@ -123,13 +123,13 @@ function draw() {
 
   let bar_coords = barre_verticale.coords;
   bar_coords.xmin = mouseX;
-
+  
   Stage.draw(context2d);
 
 
   let nb_collisions = searchCollisions(bar_coords.xmin, bar_coords.ymin, bar_coords.width, bar_coords.height);
   com_exterieur.innerHTML = 'Nombre de collisions : '+ nb_collisions;
-
+  
   // https://github.com/processing/p5.js/wiki/Optimizing-p5.js-Code-for-Performance
   var fps = frameRate();
   fill(255);

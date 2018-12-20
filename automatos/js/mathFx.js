@@ -21,14 +21,45 @@ var MathFX = (function () {
   const QUARTER_PI = PI / 4;
   const DEG_TO_RAD = PI / 180;
 
+  const easingList = [ "linearTween",
+                  "easeInQuad",
+                  "easeOutQuad",
+                  "easeInOutQuad",
+                  "easeInCubic",
+                  "easeOutCubic",
+                  "easeInOutCubic",
+                  "easeInQuart",
+                  "easeOutQuart",
+                  "easeInOutQuart",
+                  "easeInQuint",
+                  "easeOutQuint",
+                  "easeInOutQuint",
+                  "easeInSine",
+                  "easeOutSine",
+                  "easeInOutSine",
+                  "easeInExpo",
+                  "easeOutExpo",
+                  "easeInOutExpo",
+                  "easeInCirc",
+                  "easeOutCirc",
+                  "easeInOutCirc",
+                  "easeInElastic",
+                  "easeOutElastic",
+                  "easeInOutElastic",
+                  "easeInBack",
+                  "easeOutBack",
+                  "easeInOutBack",
+                  "easeInBounce",
+                  "easeOutBounce",
+                  "easeInOutBounce" ]
   /**
    * t = time
    * b = beginning position
    * c = total change in position
    * d = duration of the tween
    */
-  const swing = (t, b, c, d) => easeOutQuad(t, b, c, d),
-
+  const easingDefault = (t, b, c, d) => easeOutQuad(t, b, c, d),
+        
         linearTween = (t, b, c, d) => c*t/d+b,
 
         easeInQuad = (t, b, c, d) => c*(t/=d)*t + b,
@@ -176,7 +207,7 @@ var MathFX = (function () {
     TWO_PI: TWO_PI,
     HALF_PI: HALF_PI,
     QUARTER_PI: QUARTER_PI,
-    swing: swing,
+    easingDefault: easingDefault,
     linearTween: linearTween,
     easeInQuad: easeInQuad,
     easeOutQuad: easeOutQuad,
@@ -208,7 +239,8 @@ var MathFX = (function () {
     easeInBounce: easeInBounce,
     easeOutBounce: easeOutBounce,
     easeInOutBounce: easeInOutBounce,
-    lerp: lerp
+    lerp: lerp,
+    easingList: easingList
   };
 })();
 
