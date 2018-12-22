@@ -2,7 +2,7 @@
 //  https://github.com/processing/p5.js/wiki/Optimizing-p5.js-Code-for-Performance#use-native-js-in-bottlenecks
 //p5.disableFriendlyErrors = true;
 "use strict";
-var Stage = new StageContainer({stageWidth: 960, stageHeight:500, fps:60});
+var Stage = new StageContainer({stageWidth: 960, stageHeight:500, fps:20});
 
 var onClicked = function (event) {
   console.log('clic/ onClicked');

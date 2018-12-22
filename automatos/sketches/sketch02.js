@@ -17,7 +17,7 @@ var onMyClick = function (event) {
   }
 }
 
-var Stage = new StageContainer({stageWidth: 960, stageHeight:500, fps:60});
+var Stage = new StageContainer({stageWidth: 960, stageHeight:500, fps:20});
 Stage.addEventListener(EventContainer.P5CLICKED, null, onMyClick);
 
 
