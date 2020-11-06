@@ -31,4 +31,11 @@ Because I discovered this definition in a small book of the Monaco National Muse
 
 By reading this, I thought it was exactly I was trying to create in Javascript, an "automatos" engine.
 
-The project is not documented for the moment, I hope you'll excuse me for that, and that you'll like to play with this modest Javascript engine.
+The source code of the project is not documented for the moment, I hope you'll excuse me for that.
+
+I just added to the project a documentation on which I explain the context of the project (Moteur2D_and_JS.pdf). 
+This document is in french, I showed it the December 20th of 2018, at the meetup CreativeCodeParis.
+
+https://github.com/gregja/CreativeCodingParis
+
+
